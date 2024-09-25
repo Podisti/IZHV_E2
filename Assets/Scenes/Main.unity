@@ -1265,8 +1265,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnObstacles: 1
-  spawnFrequencyMean: 0.5
-  spawnFrequencyStd: 1.5
+  spawnFrequencyMean: 1
+  spawnFrequencyStd: 0.5
   spawnOffset:
     x: 0
     y: 2
@@ -1815,9 +1815,9 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'Switch gravity:
 
-    W - up
+    <W>  up
 
-    S - down'
+    <S>  down'
 --- !u!222 &1521786736
 CanvasRenderer:
   m_ObjectHideFlags: 0
