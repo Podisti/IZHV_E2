@@ -154,8 +154,11 @@ public class Spawner : MonoBehaviour
         
         var standard = Math.Sqrt(-2.0f * Math.Log(v1)) * Math.Sin(2.0f * Math.PI * v2);
         
-        return (float)(mean + std * standard);
-    }
+        float normalValue = (float)(mean + std * standard);
+        
+        // Round to the nearest multiple of 0.5
+        return (float)(Math.Round(normalValue * 2) / 2);
+        }
     
     /// <summary>
     /// Generate a random bool - coin flip.

@@ -63,6 +63,11 @@ public class Player : MonoBehaviour
     /// Sprite used in the pog state.
     /// </summary>
     public Sprite spritePog;
+
+    /// <summary>
+    /// Default sprite face
+    /// </summary>
+    public Sprite spriteDefault;
     
     /// <summary>
     /// Our RigidBody used for physics simulation.
@@ -109,6 +114,7 @@ public class Player : MonoBehaviour
         mSpriteRenderer = gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>();
         mSpriteTransform = gameObject.transform.GetChild(0).GetComponent<Transform>();
         mTargetRotation = mSpriteTransform.rotation;
+        spriteDefault = spriteNeutral;
     }
 
     /// <summary>
@@ -124,6 +130,7 @@ public class Player : MonoBehaviour
         
         // Reset gravity switch if we are on the ground.
         mSwitchedGravity &= !onGround;
+        if (onGround) mSpriteRenderer.sprite = spriteDefault; 
 
         // Impart the initial impulse if we are jumping.
         if (jumpMovement && onGround)
@@ -132,6 +139,11 @@ public class Player : MonoBehaviour
         // Switch gravity with vertical movement.
         if (verticalMovement != 0.0 && !mSwitchedGravity)
         {
+            if (!onGround)
+            {
+                // Update the sprite.
+                mSpriteRenderer.sprite = spritePog; 
+            }
             mCurrentGravity = verticalMovement > 0.0f ? 1.0f : -1.0f;
             Physics2D.gravity = mCurrentGravity * new Vector2(
                 Math.Abs(Physics2D.gravity.x),
